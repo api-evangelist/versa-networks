@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/versa-networks
+packages:
+  - language: hcl
+    registry: terraform
+    name: versa-networks/versadirector
+    url: https://registry.terraform.io/providers/versa-networks/versadirector/latest
+    repo: https://github.com/versa-networks/terraform-provider-versadirector
+    install: |
+      terraform {
+        required_providers {
+          versadirector = {
+            source = "versa-networks/versadirector"
+          }
+        }
+      }
+    version: 0.0.1
+    tier: partner
+    downloads: 4290
+    official: true
+    description: Official Terraform provider for Versa Networks Director; manage Versa platform resources (e.g. addresses) as infrastructure-as-code.
+  - language: python
+    registry: github
+    name: vnmcpserver
+    url: https://github.com/versa-networks/vnmcpserver
+    install: git clone https://github.com/versa-networks/vnmcpserver && uv sync
+    official: true
+    description: Versa Networks MCP server (Python, uv) wrapping the Versa Director/Concerto REST API. Catalogued in mcp/ as the MCPServer artifact.
+notes:
+  - The Versa Director/Analytics REST APIs are appliance-hosted; the OpenAPI/Swagger spec is exported from a running Director instance (port 9182 /docs/swagger-ui.html) and is not published for public download.
+  - Other repos in the versa-networks GitHub org (openstack-java-sdk, libcli, wazuh) are forks/utilities, not first-party clients of the Versa REST API, so are excluded from official packages.
+  - github.com/versa-networks/devops holds example automation scripts, not a released package.

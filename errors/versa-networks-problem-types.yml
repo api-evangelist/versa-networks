@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+format: custom-json
+envelope:
+  fields: [error, code, message, more_info]
+  note: >-
+    Versa Director REST API returns standard HTTP status codes plus an
+    application-specific error object. `code` carries an application error code in
+    the 4001-5000 range; not RFC 9457 application/problem+json.
+problems:
+  - status: 200
+    title: OK
+    meaning: Request succeeded.
+  - status: 201
+    title: Created
+    meaning: Resource created.
+  - status: 400
+    title: Bad Request
+    meaning: Malformed request or invalid parameters.
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid authentication (expired bearer token / bad basic credentials).
+  - status: 404
+    title: Not Found
+    meaning: Requested resource (appliance, template, device group) does not exist.
+  - status: 500
+    title: Internal Server Error
+    meaning: Server-side error on the Director.
+application_error_codes:
+  range: '4001-5000'
+  note: Application-specific error codes returned in the `code` field of the error envelope; the full registry is exported per-release from the Director Swagger documentation.

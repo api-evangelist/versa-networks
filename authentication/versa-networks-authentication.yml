@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+docs: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+summary:
+  types: [oauth2, http]
+  http_schemes: [basic, bearer]
+  oauth2_flows: [password]
+  api_key_in: []
+schemes:
+  - name: OAuth2Password
+    type: oauth2
+    scheme: oauth2
+    flow: password
+    token_url: /auth/token
+    port: 9183
+    parameters: [client_id, client_secret, username, password, grant_type=password]
+    returns: access_token (JWT bearer) + refresh_token
+    recommended: true
+    notes: >-
+      Recommended by Versa for REST API access. A client (client_id/client_secret)
+      is registered, then exchanged with user credentials at /auth/token for a
+      bearer access token used as `Authorization: Bearer <token>`. Confirmed in the
+      first-party MCP server (vnmcpserver) auth flow.
+  - name: BasicAuth
+    type: http
+    scheme: basic
+    port: 9182
+    notes: >-
+      HTTP Basic authentication (username:password) on port 9182. Per Versa docs,
+      releases 23.1.1 and later support only basicAuth for some endpoints; OAuth is
+      recommended where available.
+  - name: BearerAuth
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    notes: Bearer token obtained from the OAuth2 password flow; sent on all subsequent requests.

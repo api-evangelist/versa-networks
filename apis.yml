@@ -1,7 +1,29 @@
 aid: versa-networks
 name: Versa Networks
-description: Versa Networks is a company surfaced as a portfolio company of mayfield and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Versa Networks is a SASE (Secure Access Service Edge), SD-WAN and SSE vendor whose
+  VersaONE platform unifies networking and security services — Secure SD-WAN, Zero
+  Trust Network Access (ZTNA), CASB, Secure Web Gateway, DLP, NGFW and Advanced
+  Threat Protection — delivered on-premises, as private SASE, sovereign SASE, or
+  cloud-managed via Versa Concerto. For programmatic management it exposes the
+  appliance-hosted Versa Director REST API and Versa Analytics REST API (OAuth2 or
+  HTTP Basic, Swagger-documented per release), a partner-tier Terraform provider for
+  infrastructure-as-code, and a first-party Model Context Protocol server ("Zero
+  Trust MCP Server") that surfaces 67 read-only Director/Concerto query tools to AI
+  agents.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://versa-networks.com/wordpress/wp-content/uploads/2026/03/versa-seo-share-graphic.png
 url: https://raw.githubusercontent.com/api-evangelist/versa-networks/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,10 +33,51 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Networking
+- Security
+- SASE
+- SD-WAN
+- SSE
+- Zero Trust
+- ZTNA
+- Cybersecurity
+- Cloud Networking
+- Infrastructure
+- MCP
+apis:
+- name: Versa Director REST API
+  description: >-
+    Management and orchestration REST API of the Versa Director control plane —
+    SD-WAN workflows, appliance/device management, templates and device groups,
+    dashboard/live status, health, assets, audit logs and fault management.
+    OAuth2 password-grant (recommended) or HTTP Basic; offset/limit pagination;
+    JSON error envelope. Swagger UI is served from a running Director on port 9182.
+  humanURL: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+  baseURL: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+  x-base-pattern: 'https://<director-host>:9182 (Basic) | :9183 (OAuth) — appliance-hosted, per deployment'
+  tags:
+  - SD-WAN
+  - SASE
+  - Networking
+  - Management
+  - Orchestration
+  properties:
+  - type: APIReference
+    url: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Access_Versa_Director_REST_APIs_Using_Swagger_UI
+- name: Versa Analytics REST API
+  description: >-
+    REST API of Versa Analytics for querying network and security analytics,
+    reporting and alarm data across the Versa estate.
+  humanURL: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Analytics/Analytics_REST_APIs/Versa_Analytics_REST_API_Overview
+  baseURL: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Analytics/Analytics_REST_APIs/Versa_Analytics_REST_API_Overview
+  tags:
+  - Analytics
+  - Reporting
+  - Networking
+  - Security
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +86,54 @@ maintainers:
 common:
 - type: Website
   url: https://versa-networks.com
+- type: DeveloperPortal
+  url: https://docs.versa-networks.com/
+- type: Documentation
+  url: https://docs.versa-networks.com/
+- type: APIReference
+  url: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+- type: Support
+  url: https://versa-networks.com/customers/support/
+- type: Blog
+  url: https://versa-networks.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/versa-networks
+- type: SignUp
+  url: https://versa-networks.com/trial/
+- type: PrivacyPolicy
+  url: https://versa-networks.com/privacy/
+- type: TrustCenter
+  url: https://versa-networks.com/versa-security-and-trust-center/
+- type: Compliance
+  url: https://versa-networks.com/versa-security-and-trust-center/
+- type: MCPServer
+  name: Versa API MCP Server
+  url: mcp/versa-networks-mcp.yml
+- type: LLMsTxt
+  url: llms/versa-networks-llms.txt
+- type: Packages
+  url: packages/versa-networks-packages.yml
+- type: SDKs
+  url: packages/versa-networks-packages.yml
+- type: Authentication
+  url: authentication/versa-networks-authentication.yml
+- type: Conventions
+  url: conventions/versa-networks-conventions.yml
+- type: ErrorCatalog
+  url: errors/versa-networks-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/versa-networks-lifecycle.yml
+- type: Conformance
+  url: conformance/versa-networks-conformance.yml
+- type: DataModel
+  url: data-model/versa-networks-data-model.yml
+- type: DomainSecurity
+  url: security/versa-networks-domain-security.yml
+- type: AgentSkill
+  name: Versa API agent skills
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+versioning:
+  scheme: release-based
+  current: '23.1.1'
+  supported_from: '20.2'
+  docs: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+  note: >-
+    The REST API surface is versioned with the Versa Director software release
+    (e.g. 20.2, 22.1.4, 23.1.1) rather than an in-URL API version. Authentication
+    behavior changed across releases (23.1.1+ basicAuth for some endpoints).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public RFC 8594 Sunset/Deprecation-header policy documented; API changes are communicated through per-release documentation and release notes.
+sla:
+  url: null
+  note: No public SLA/uptime target (appliance-hosted, customer-operated).
+status_page: null
+docs_release_notes: https://docs.versa-networks.com/
+deprecated_operations: []

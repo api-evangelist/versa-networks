@@ -1,0 +1,53 @@
+# https://versa-networks.com llms.txt
+
+- [VersaONE Platform](https://versa-networks.com/platform/): A unified platform that integrates networking and security services for enhanced performance and security.
+- [Versa AI](https://versa-networks.com/products/versaai/): AI-driven solutions that enhance security and operational efficiency.
+- [Secure SD-WAN](https://versa-networks.com/products/sd-wan/): A secure software-defined wide area network solution that optimizes connectivity and security.
+- [Secure Access Fabric](https://versa-networks.com/products/vsaf/): A framework that integrates various security services to protect users and data across the network.
+
+### Security Solutions
+- [Zero Trust Network Access (ZTNA)](https://versa-networks.com/products/ztna/): A security model that requires strict identity verification for every person and device trying to access resources.
+- [Cloud Access Security Broker (CASB)](https://versa-networks.com/products/casb/): A security policy enforcement point that sits between cloud service users and cloud applications.
+- [Secure Web Gateway (SWG)](https://versa-networks.com/products/swg/): A security solution that protects users from web-based threats.
+- [Data Loss Prevention (DLP)](https://versa-networks.com/products/data-loss-prevention/): Strategies and tools to prevent sensitive data from being lost, misused, or accessed by unauthorized users.
+- [Advanced Threat Protection (ATP)](https://versa-networks.com/products/versa-advanced-threat-protection/): Solutions designed to detect and respond to advanced threats in real-time.
+
+### Deployment Options
+- [Deployment Options](https://versa-networks.com/products/deployment/): Various methods for implementing Versa's solutions to meet organizational needs.
+- [Private SASE](https://versa-networks.com/products/versa-private-sase/): A dedicated SASE solution for organizations requiring enhanced privacy and control.
+- [Sovereign SASE](https://versa-networks.com/products/sovereign-sase/): SASE solutions that comply with local data sovereignty laws.
+
+## Industry Solutions
+Versa Networks offers tailored solutions for various industries, including:
+- [Healthcare](https://versa-networks.com/solutions/industries/healthcare/): Solutions designed to meet the unique security and compliance needs of healthcare organizations.
+- [Financial Services](https://versa-networks.com/solutions/industries/financial-services/): Security and networking solutions tailored for the financial sector.
+- [Education](https://versa-networks.com/solutions/industries/education/): Tools and services to secure educational institutions and their networks.
+- [Transportation](https://versa-networks.com/solutions/industries/transportation/): Solutions that enhance security and connectivity in the transportation sector.
+
+## Customer Engagement
+- [Customer Central](https://versa-networks.com/customers/): A hub for customer resources and support.
+- [Customer Acclaim](https://versa-networks.com/customers/acclaim/): Testimonials and success stories from satisfied customers.
+- [Case Studies](https://versa-networks.com/customers/case-studies/): In-depth analyses of how organizations have successfully implemented Versa solutions.
+
+## Partner Programs
+- [Become a Partner](https://versa-networks.com/partners/become-a-partner/): Information on how to join Versa's partner program.
+- [Find a Partner](https://versa-networks.com/partners/find-a-partner/): A resource for locating Versa partners.
+- [Our Technology Partners](https://versa-networks.com/partners/technology-partners/): A list of technology partners that enhance Versa's offerings.
+
+## Resources
+- [Training](https://academy.versa-networks.com/): Educational resources and training programs for users of Versa products.
+- [Support](https://versa-networks.com/customers/support/): Access to technical support and customer service.
+- [Blog](https://versa-networks.com/blog/): Insights and updates from Versa Networks.
+- [Webinars](https://versa-networks.com/resources/webinars/): Online seminars covering various topics related to Versa's solutions.
+
+## Company Information
+- [Company Overview](https://versa-networks.com/about/): An introduction to Versa Networks and its mission.
+- [Leadership Team](https://versa-networks.com/about/leadership/): Information about the executives leading Versa Networks.
+- [Careers At Versa](https://versa-networks.com/careers/): Current job openings and information about working at Versa.
+
+## Additional Information
+- [What's New](https://versa-networks.com/resources/): Updates on the latest developments and offerings from Versa Networks.
+- [Press Releases](https://versa-networks.com/news/2025/): Official announcements and news from Versa Networks.
+- [Analyst Reports](https://versa-networks.com/resources/reports/): Reports and insights from industry analysts regarding Versa's solutions.
+
+This structured summary provides a comprehensive overview of Versa Networks, its products, industry solutions, customer engagement strategies, partner programs, and additional resources.

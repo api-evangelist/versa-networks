@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+url: https://versa-networks.com/versa-security-and-trust-center/
+title: Versa Security and Trust Center
+certifications:
+  - FedRAMP
+  - FIPS 140
+  - SOC 2
+  - PCI DSS
+  - ISO 27001
+  - ISO 27017
+  - ISO 27018
+  - HIPAA
+  - GDPR
+  - Common Criteria
+evidence:
+  - source: https://versa-networks.com/versa-security-and-trust-center/
+    keywords: [soc2, fedramp, fips 140, pci dss, iso 27001, iso 27017, iso 27018, hipaa, gdpr, common criteria, trust center]
+notes: >-
+  Named certifications extracted from the public Versa Security and Trust Center
+  page. Also links an AI Ethics Statement (https://versa-networks.com/privacy/ai-ethics-statement/)
+  and privacy resources under https://versa-networks.com/privacy/.

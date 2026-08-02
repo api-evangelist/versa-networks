@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: live probe of https://versa-networks.com/.well-known/*
+host: https://versa-networks.com
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+notes: >-
+  No /.well-known discovery documents are published on the corporate domain.
+  A marketing-oriented /llms.txt IS served (HTTP 200) and is captured verbatim in
+  llms/versa-networks-llms.txt. The Versa Director/Analytics REST APIs are
+  appliance-hosted (per-customer Director IP on ports 9182/9183), so no public
+  vendor-hosted API host exists to probe for a well-known catalog.

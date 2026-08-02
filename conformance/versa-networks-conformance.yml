@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: Director REST API supports OAuth2 password-grant tokens via /auth/token (recommended auth); confirmed in first-party vnmcpserver.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery / .well-known/openid-configuration published.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Error responses use a custom {error, code, message, more_info} envelope, not application/problem+json.
+  - id: pagination-offset-limit
+    conforms: true
+    evidence: offset/limit query parameters documented and used across list endpoints.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404.
+  - id: json-api
+    conforms: false
+compliance_program:
+  published: true
+  source: https://versa-networks.com/versa-security-and-trust-center/
+  certifications: [FedRAMP, FIPS 140, SOC 2, PCI DSS, ISO 27001, ISO 27017, ISO 27018, HIPAA, GDPR, Common Criteria]
+  note: Corporate/product security compliance posture from the Versa Security and Trust Center; see security/versa-networks-trust-center.yml.

@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.versa-networks.com/Management_and_Orchestration/Versa_Director/Director_REST_APIs/Versa_Director_REST_API_Overview
+authentication:
+  style: OAuth2 password-grant bearer token (recommended) or HTTP Basic
+  ref: authentication/versa-networks-authentication.yml
+base:
+  pattern: 'https://<director-host>:9182 (basicAuth) | https://<director-host>:9183 (OAuth)'
+  note: Appliance-hosted; no single vendor base host. Versa Concerto is the cloud-managed variant.
+resource_paths:
+  - '/vnms/* — VNMS APIs (SD-WAN workflows, appliances, templates, device groups, assets, audit, dashboard health/status)'
+  - '/nextgen/* — Nextgen APIs (appliance status, devices, device groups)'
+  - '/vnms/dashboard/* — Dashboard APIs (live appliance status)'
+  - '/api/config, /api/operational — device-level VOS configuration'
+pagination:
+  style: offset-limit
+  params: [offset, limit]
+  example: '?offset=0&limit=25'
+  note: Also supports a cursor-style follow-up via next_page_data (queryId + offset) on dashboard queries.
+versioning:
+  scheme: release-based
+  current: '23.1.1'
+  supported_from: '20.2'
+  note: API surface tracks the Director software release; no in-URL version segment.
+error_envelope:
+  shape: json
+  fields: [error, code, message, more_info]
+  app_code_range: '4001-5000 (application-specific error codes)'
+  http_status_used: [200, 201, 400, 401, 404, 500]
+  ref: errors/versa-networks-problem-types.yml
+idempotency:
+  supported: false
+  note: No documented idempotency-key header/parameter for the Versa Director REST API.
+rate_limiting:
+  documented: false
+  note: No rate-limit policy or headers documented for the appliance-hosted REST API.
+request_tracing:
+  documented: false
+content_type: application/json
+cross_links:
+  authentication: authentication/versa-networks-authentication.yml
+  errors: errors/versa-networks-problem-types.yml
+  lifecycle: lifecycle/versa-networks-lifecycle.yml
+  data_model: data-model/versa-networks-data-model.yml

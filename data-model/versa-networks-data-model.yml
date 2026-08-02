@@ -1,0 +1,60 @@
+generated: '2026-07-21'
+method: derived
+source: >-
+  github.com/versa-networks/vnmcpserver (Versa Director REST API resource paths) +
+  docs.versa-networks.com Director REST API overview
+note: >-
+  Entity graph derived from the Versa Director REST API resource surface exposed by
+  the first-party MCP server and the Director REST API documentation. No public
+  OpenAPI was available to download, so relationships are inferred from resource
+  paths and id/reference fields (organization/tenant, appliance UUID, device name).
+entities:
+  - name: Organization
+    aka: [Tenant, org]
+    description: Top-level tenant that owns appliances, templates, device groups and workflows.
+    relationships:
+      - {type: has_many, target: Appliance, via: org}
+      - {type: has_many, target: DeviceGroup, via: organization}
+      - {type: has_many, target: Template, via: orgname}
+  - name: Appliance
+    aka: [Device, VOS device]
+    id: uuid
+    description: A Versa Operating System (VOS) appliance managed by the Director; carries status, hardware, services, capabilities, health and violations.
+    relationships:
+      - {type: belongs_to, target: Organization, via: org}
+      - {type: belongs_to, target: DeviceGroup, via: deviceGroup}
+      - {type: has_many, target: Template, via: template_listing}
+      - {type: has_many, target: Alarm, via: applianceName}
+      - {type: has_one, target: RoutingInstance, via: applianceName}
+      - {type: has_many, target: Asset, via: appliance}
+  - name: DeviceGroup
+    description: Group of appliances/devices sharing configuration and model numbers.
+    relationships:
+      - {type: belongs_to, target: Organization, via: organization}
+      - {type: has_many, target: Appliance, via: deviceGroup}
+  - name: Template
+    aka: [TemplateWorkflow, DeviceWorkflow]
+    description: Configuration template / workflow bound to devices and appliances.
+    relationships:
+      - {type: belongs_to, target: Organization, via: orgname}
+      - {type: has_many, target: Appliance, via: bind}
+  - name: Asset
+    description: Inventory asset tied to an appliance/organization.
+    relationships:
+      - {type: belongs_to, target: Organization, via: organization}
+  - name: Alarm
+    aka: [Alert]
+    description: Fault/alarm raised by an appliance, the Director, or Analytics; summarized per org, per device, and per severity.
+    relationships:
+      - {type: belongs_to, target: Appliance, via: applianceName}
+      - {type: belongs_to, target: Organization, via: org}
+  - name: AuditLog
+    description: Director audit-log entries for user and system actions.
+    relationships:
+      - {type: belongs_to, target: Organization, via: org}
+  - name: Director
+    aka: [VersaDirector]
+    description: The management/orchestration control plane; exposes HA details, package/version info, system details and uptime.
+    relationships:
+      - {type: has_many, target: Appliance, via: manages}
+      - {type: has_many, target: Alarm, via: director}
