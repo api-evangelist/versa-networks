@@ -3,15 +3,13 @@ method: searched
 status: published
 source: https://github.com/versa-networks/vnmcpserver
 name: Versa API MCP Server
-description: >-
-  First-party Model Context Protocol server published by Versa Networks that
-  exposes a read-only subset of the Versa Director / Concerto REST API as MCP
-  tools. It authenticates to a Versa Director using the OAuth2 password grant
-  (client_id + client_secret + username/password against /auth/token) and lets an
-  agent query appliance status, device/template workflows, device groups, assets,
-  health, and alarms. Self-hosted (clone + `uv sync`); ships STDIO, Director SSE,
-  and Concerto SSE entrypoints. The maintainer notes the implementation omits many
-  security checks and should run only in a trusted environment.
+description: First-party Model Context Protocol server published by Versa Networks that exposes a read-only
+  subset of the Versa Director / Concerto REST API as MCP tools. It authenticates to a Versa Director
+  using the OAuth2 password grant (client_id + client_secret + username/password against /auth/token)
+  and lets an agent query appliance status, device/template workflows, device groups, assets, health,
+  and alarms. Self-hosted (clone + `uv sync`); ships STDIO, Director SSE, and Concerto SSE entrypoints.
+  The maintainer notes the implementation omits many security checks and should run only in a trusted
+  environment.
 repo: https://github.com/versa-networks/vnmcpserver
 product_page: https://versa-networks.com/products/zero-trust-mcp-server/
 license: proprietary (Versa Networks, use/modify permitted, redistribution prohibited)
@@ -19,92 +17,218 @@ runtime:
   language: python
   requires_python: '>=3.11'
   package_manager: uv
-  dependencies: ['mcp[cli]>=1.6.0', 'pyjwt>=2.10.1', 'requests>=2.32.3']
+  dependencies:
+  - mcp[cli]>=1.6.0
+  - pyjwt>=2.10.1
+  - requests>=2.32.3
 server:
   name: Versa API Server
   transports:
-    - transport: stdio
-      entrypoint: main.py
-      install: uv run mcp install main.py
-    - transport: sse
-      entrypoint: main_sse.py
-      note: Versa Director integration; default SSE at http://127.0.0.1:8000/sse
-    - transport: sse
-      entrypoint: main_concerto_sse.py
-      note: Versa Concerto integration
-  hosted_url: null   # self-hosted only; no vendor-hosted remote endpoint
+  - transport: stdio
+    entrypoint: main.py
+    install: uv run mcp install main.py
+  - transport: sse
+    entrypoint: main_sse.py
+    note: Versa Director integration; default SSE at http://127.0.0.1:8000/sse
+  - transport: sse
+    entrypoint: main_concerto_sse.py
+    note: Versa Concerto integration
+  hosted_url: null
 auth:
   scheme: oauth2-password
   token_endpoint: /auth/token
-  env: [VN_CLIENT_ID, VN_CLIENT_SECRET]
+  env:
+  - VN_CLIENT_ID
+  - VN_CLIENT_SECRET
   bearer: true
 wraps_api: Versa Director / Concerto REST API
 tool_count: 67
 tools:
-  - {name: get_all_appliance_status, description: List status for all appliances (paginated), source_operation: 'GET /nextgen/appliance/status'}
-  - {name: get_single_appliance_status, description: Status for a single appliance by id or name, source_operation: 'GET /nextgen/appliance/status/{id}'}
-  - {name: get_device_template_listing, description: Templates listing for a device, source_operation: 'GET /nextgen/appliance/template_listing/{deviceName}'}
-  - {name: get_template_workflow, description: Template workflow by name, source_operation: 'GET /vnms/alltypes/workflow/templates/template/{name}'}
-  - {name: get_appliance_locations, description: Geographic locations of appliances, source_operation: 'GET /vnms/dashboard/appliance/location'}
-  - {name: get_routing_instance_information, description: Routing instances for an appliance, source_operation: 'GET /vnms/appliance/{applianceName}/routing-instances'}
-  - {name: get_all_appliances_by_type_and_tags, description: Filter appliances by type and tags, source_operation: 'GET /vnms/appliance/appliance'}
-  - {name: get_all_appliances_lite, description: Lightweight appliance list, source_operation: 'GET /vnms/appliance/appliance/lite'}
-  - {name: get_all_appliances_liteview, description: Lite view of appliances (CSV export option), source_operation: 'GET /vnms/appliance/appliance/liteView'}
-  - {name: search_appliance_by_name, description: Search appliances by name, source_operation: 'GET /vnms/appliance/applianceByName'}
-  - {name: export_appliance_configuration, description: Export an appliance configuration, source_operation: 'GET /vnms/appliance/export'}
-  - {name: get_appliances_summary, description: Summary of appliances, source_operation: 'GET /vnms/appliance/summary'}
-  - {name: get_audit_logs, description: Director audit logs (paginated/search), source_operation: 'GET /vnms/audit/logs'}
-  - {name: device_workflow_fetch_all, description: All device workflows, source_operation: 'GET /vnms device workflow'}
-  - {name: get_specific_device_workflow, description: Device workflow for a device, source_operation: 'GET /vnms device workflow/{deviceName}'}
-  - {name: get_template_bind_data_header_and_count, description: Template bind data + count, source_operation: 'GET /vnms template bind data'}
-  - {name: template_fetch_all, description: All templates, source_operation: 'GET /vnms templates'}
-  - {name: get_specific_template_workflow, description: Template workflow for a name, source_operation: 'GET /vnms template workflow/{name}'}
-  - {name: device_group_fetch_all, description: All device groups, source_operation: 'GET /nextgen/deviceGroup'}
-  - {name: get_specific_device_group, description: Device group by name, source_operation: 'GET /nextgen/deviceGroup/{deviceGroupName}'}
-  - {name: get_all_model_numbers, description: Supported device model numbers, source_operation: 'GET /nextgen/deviceGroup/modelNumbers'}
-  - {name: show_templates_associated_to_device, description: Templates associated with a device, source_operation: 'GET /nextgen/device/{deviceName}'}
-  - {name: get_all_assets, description: All assets, source_operation: 'GET /vnms/assets/asset'}
-  - {name: get_next_page_data, description: Fetch next page for a dashboard query, source_operation: 'GET /vnms/dashboard/appliance/next_page_data'}
-  - {name: get_appliance_details_by_uuid, description: Appliance detail by UUID, source_operation: 'GET /vnms/dashboard/appliance/{Uuid}'}
-  - {name: get_appliance_hardware, description: Appliance hardware inventory, source_operation: 'GET /vnms/dashboard/appliance/{Uuid}/hardware'}
-  - {name: get_bw_measurement, description: Bandwidth measurement for an appliance, source_operation: 'GET /vnms/dashboard/appliance/{applianceName}/bandwidthservers'}
-  - {name: get_appliance_capabilities, description: Appliance capabilities, source_operation: 'GET /vnms/dashboard/appliance/{applianceName}/capabilities'}
-  - {name: get_appliance_live_status, description: Live status for an appliance, source_operation: 'GET /vnms/dashboard/appliance/{applianceName}/live'}
-  - {name: get_appliance_sync_status, description: Appliance config sync status, source_operation: 'GET /vnms/dashboard/appliance/{applianceUUID}/syncStatus'}
-  - {name: get_appliance_services, description: Services running on an appliance, source_operation: 'GET /vnms/dashboard/applianceServices/{applianceName}'}
-  - {name: get_appliance_status, description: Appliance status by UUID, source_operation: 'GET /vnms/dashboard/applianceStatus/{applianceUUID}'}
-  - {name: get_appliance_status_brief, description: Brief appliance status, source_operation: 'GET /vnms/dashboard/applianceStatus/{applianceUUID}/brief'}
-  - {name: get_all_appliance_names, description: All appliance names, source_operation: 'GET /vnms/cloud/systems/getAllApplianceNames'}
-  - {name: get_all_appliances_basic_details, description: Basic details for all appliances, source_operation: 'GET /vnms/cloud/systems/getAllAppliancesBasicDetails'}
-  - {name: get_appliance_violations, description: Policy/compliance violations for an appliance, source_operation: 'GET /vnms/dashboard/applianceviolations/{applianceName}'}
-  - {name: get_enable_monitoring, description: Monitoring-enabled status, source_operation: 'GET /vnms/dashboard/enableMonitoring'}
-  - {name: get_device_status_pulling_enabled, description: Whether status pulling is enabled for a device, source_operation: 'GET /vnms/dashboard/getMonitorPullEnabled/{deviceName}'}
-  - {name: get_health_ike, description: IKE health for a device, source_operation: 'GET /vnms/dashboard/health/ike'}
-  - {name: get_health_interface, description: Interface health for a device, source_operation: 'GET /vnms/dashboard/health/interface'}
-  - {name: get_health_path, description: Path health for a device, source_operation: 'GET /vnms/dashboard/health/path'}
-  - {name: get_devices_in_lte, description: Devices using LTE, source_operation: 'GET /vnms/dashboard/lte/list'}
-  - {name: get_nav_tree_node, description: Navigation tree node, source_operation: 'GET /vnms/dashboard/navTree'}
-  - {name: get_head_end_status, description: Head-end status, source_operation: 'GET /vnms/dashboard/status/headEnds'}
-  - {name: get_vd_status, description: Versa Director status, source_operation: 'GET /vnms/dashboard/vdStatus'}
-  - {name: get_vd_ha_details, description: Director HA details}
-  - {name: get_vd_package_info, description: Director package/version info}
-  - {name: get_sys_details, description: System details}
-  - {name: get_sys_uptime, description: System uptime}
-  - {name: filter_paginate_alarm, description: Filter and paginate alarms}
-  - {name: get_alarm_handling, description: Alarm handling configuration}
-  - {name: get_alarm_summary_per_org, description: Alarm summary per organization}
-  - {name: get_alarm_summary, description: Overall alarm summary}
-  - {name: get_alarm_types, description: Alarm type catalog}
-  - {name: get_all_filtered_alarms, description: All alarms matching filters}
-  - {name: get_analytics_alarm_summary, description: Analytics alarm summary}
-  - {name: get_analytics_alarms, description: Analytics alarms}
-  - {name: get_appliance_alarm_model, description: Appliance alarm model}
-  - {name: get_appliance_alarm_types, description: Appliance alarm types}
-  - {name: get_device_alarm_summary, description: Device alarm summary}
-  - {name: get_director_alarm_summary, description: Director alarm summary}
-  - {name: get_director_alarms, description: Director alarms}
-  - {name: get_director_fail_over_alarms, description: Director failover alarms}
-  - {name: get_director_ha_alarms, description: Director HA alarms}
-  - {name: get_imp_alarm_summary, description: Important alarm summary}
-  - {name: get_imp_alarms, description: Important alarms}
-  - {name: get_status_change, description: Status change events}
+- name: get_all_appliance_status
+  description: List status for all appliances (paginated)
+  source_operation: GET /nextgen/appliance/status
+- name: get_single_appliance_status
+  description: Status for a single appliance by id or name
+  source_operation: GET /nextgen/appliance/status/{id}
+- name: get_device_template_listing
+  description: Templates listing for a device
+  source_operation: GET /nextgen/appliance/template_listing/{deviceName}
+- name: get_template_workflow
+  description: Template workflow by name
+  source_operation: GET /vnms/alltypes/workflow/templates/template/{name}
+- name: get_appliance_locations
+  description: Geographic locations of appliances
+  source_operation: GET /vnms/dashboard/appliance/location
+- name: get_routing_instance_information
+  description: Routing instances for an appliance
+  source_operation: GET /vnms/appliance/{applianceName}/routing-instances
+- name: get_all_appliances_by_type_and_tags
+  description: Filter appliances by type and tags
+  source_operation: GET /vnms/appliance/appliance
+- name: get_all_appliances_lite
+  description: Lightweight appliance list
+  source_operation: GET /vnms/appliance/appliance/lite
+- name: get_all_appliances_liteview
+  description: Lite view of appliances (CSV export option)
+  source_operation: GET /vnms/appliance/appliance/liteView
+- name: search_appliance_by_name
+  description: Search appliances by name
+  source_operation: GET /vnms/appliance/applianceByName
+- name: export_appliance_configuration
+  description: Export an appliance configuration
+  source_operation: GET /vnms/appliance/export
+- name: get_appliances_summary
+  description: Summary of appliances
+  source_operation: GET /vnms/appliance/summary
+- name: get_audit_logs
+  description: Director audit logs (paginated/search)
+  source_operation: GET /vnms/audit/logs
+- name: device_workflow_fetch_all
+  description: All device workflows
+  source_operation: GET /vnms device workflow
+- name: get_specific_device_workflow
+  description: Device workflow for a device
+  source_operation: GET /vnms device workflow/{deviceName}
+- name: get_template_bind_data_header_and_count
+  description: Template bind data + count
+  source_operation: GET /vnms template bind data
+- name: template_fetch_all
+  description: All templates
+  source_operation: GET /vnms templates
+- name: get_specific_template_workflow
+  description: Template workflow for a name
+  source_operation: GET /vnms template workflow/{name}
+- name: device_group_fetch_all
+  description: All device groups
+  source_operation: GET /nextgen/deviceGroup
+- name: get_specific_device_group
+  description: Device group by name
+  source_operation: GET /nextgen/deviceGroup/{deviceGroupName}
+- name: get_all_model_numbers
+  description: Supported device model numbers
+  source_operation: GET /nextgen/deviceGroup/modelNumbers
+- name: show_templates_associated_to_device
+  description: Templates associated with a device
+  source_operation: GET /nextgen/device/{deviceName}
+- name: get_all_assets
+  description: All assets
+  source_operation: GET /vnms/assets/asset
+- name: get_next_page_data
+  description: Fetch next page for a dashboard query
+  source_operation: GET /vnms/dashboard/appliance/next_page_data
+- name: get_appliance_details_by_uuid
+  description: Appliance detail by UUID
+  source_operation: GET /vnms/dashboard/appliance/{Uuid}
+- name: get_appliance_hardware
+  description: Appliance hardware inventory
+  source_operation: GET /vnms/dashboard/appliance/{Uuid}/hardware
+- name: get_bw_measurement
+  description: Bandwidth measurement for an appliance
+  source_operation: GET /vnms/dashboard/appliance/{applianceName}/bandwidthservers
+- name: get_appliance_capabilities
+  description: Appliance capabilities
+  source_operation: GET /vnms/dashboard/appliance/{applianceName}/capabilities
+- name: get_appliance_live_status
+  description: Live status for an appliance
+  source_operation: GET /vnms/dashboard/appliance/{applianceName}/live
+- name: get_appliance_sync_status
+  description: Appliance config sync status
+  source_operation: GET /vnms/dashboard/appliance/{applianceUUID}/syncStatus
+- name: get_appliance_services
+  description: Services running on an appliance
+  source_operation: GET /vnms/dashboard/applianceServices/{applianceName}
+- name: get_appliance_status
+  description: Appliance status by UUID
+  source_operation: GET /vnms/dashboard/applianceStatus/{applianceUUID}
+- name: get_appliance_status_brief
+  description: Brief appliance status
+  source_operation: GET /vnms/dashboard/applianceStatus/{applianceUUID}/brief
+- name: get_all_appliance_names
+  description: All appliance names
+  source_operation: GET /vnms/cloud/systems/getAllApplianceNames
+- name: get_all_appliances_basic_details
+  description: Basic details for all appliances
+  source_operation: GET /vnms/cloud/systems/getAllAppliancesBasicDetails
+- name: get_appliance_violations
+  description: Policy/compliance violations for an appliance
+  source_operation: GET /vnms/dashboard/applianceviolations/{applianceName}
+- name: get_enable_monitoring
+  description: Monitoring-enabled status
+  source_operation: GET /vnms/dashboard/enableMonitoring
+- name: get_device_status_pulling_enabled
+  description: Whether status pulling is enabled for a device
+  source_operation: GET /vnms/dashboard/getMonitorPullEnabled/{deviceName}
+- name: get_health_ike
+  description: IKE health for a device
+  source_operation: GET /vnms/dashboard/health/ike
+- name: get_health_interface
+  description: Interface health for a device
+  source_operation: GET /vnms/dashboard/health/interface
+- name: get_health_path
+  description: Path health for a device
+  source_operation: GET /vnms/dashboard/health/path
+- name: get_devices_in_lte
+  description: Devices using LTE
+  source_operation: GET /vnms/dashboard/lte/list
+- name: get_nav_tree_node
+  description: Navigation tree node
+  source_operation: GET /vnms/dashboard/navTree
+- name: get_head_end_status
+  description: Head-end status
+  source_operation: GET /vnms/dashboard/status/headEnds
+- name: get_vd_status
+  description: Versa Director status
+  source_operation: GET /vnms/dashboard/vdStatus
+- name: get_vd_ha_details
+  description: Director HA details
+- name: get_vd_package_info
+  description: Director package/version info
+- name: get_sys_details
+  description: System details
+- name: get_sys_uptime
+  description: System uptime
+- name: filter_paginate_alarm
+  description: Filter and paginate alarms
+- name: get_alarm_handling
+  description: Alarm handling configuration
+- name: get_alarm_summary_per_org
+  description: Alarm summary per organization
+- name: get_alarm_summary
+  description: Overall alarm summary
+- name: get_alarm_types
+  description: Alarm type catalog
+- name: get_all_filtered_alarms
+  description: All alarms matching filters
+- name: get_analytics_alarm_summary
+  description: Analytics alarm summary
+- name: get_analytics_alarms
+  description: Analytics alarms
+- name: get_appliance_alarm_model
+  description: Appliance alarm model
+- name: get_appliance_alarm_types
+  description: Appliance alarm types
+- name: get_device_alarm_summary
+  description: Device alarm summary
+- name: get_director_alarm_summary
+  description: Director alarm summary
+- name: get_director_alarms
+  description: Director alarms
+- name: get_director_fail_over_alarms
+  description: Director failover alarms
+- name: get_director_ha_alarms
+  description: Director HA alarms
+- name: get_imp_alarm_summary
+  description: Important alarm summary
+- name: get_imp_alarms
+  description: Important alarms
+- name: get_status_change
+  description: Status change events
+deployment:
+  mode: none
+  endpoint: http://127.0.0.1:8000/sse
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census
