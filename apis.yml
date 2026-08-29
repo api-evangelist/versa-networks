@@ -11,6 +11,17 @@ description: >-
   infrastructure-as-code, and a first-party Model Context Protocol server ("Zero
   Trust MCP Server") that surfaces 67 read-only Director/Concerto query tools to AI
   agents.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
