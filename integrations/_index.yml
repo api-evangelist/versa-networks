@@ -27,3 +27,15 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: versa-networks-crowdstrike-own
+  label: CrowdStrike (own)
+  partner: crowdstrike
+  partner_name: CrowdStrike (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.crowdstrike.com/listings/versaone-universal-sase-platform-data-connector/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
