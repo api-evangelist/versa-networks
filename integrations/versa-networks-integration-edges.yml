@@ -4,6 +4,10 @@ checked:
 - crowdstrike/integrations/crowdstrike-integration-edges.yml
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- https://manrs.org/netops/participants/
+- https://www.peeringdb.com/api/fac
+- https://www.peeringdb.com/api/ix
+- https://www.peeringdb.com/api/net
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -143,5 +147,36 @@ edges:
   listing_count: 2
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
+- partner_name: PeeringDB (interconnection register)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.peeringdb.com/net/30222
+  category: network interconnection register
+  contract_reference:
+    register: PeeringDB (peeringdb.com/api net, ix, fac, org)
+    standard: null
+    spec_file: null
+    role: peeringdb-network
+    registered_name: Versa Networks
+    register_id: https://www.peeringdb.com/net/30222
+    matched_domain: versa-networks.com
+    matched_by: domain
+    asns:
+    - 400318
+    info_types:
+    - Content
+    ix_presence: 14
+    exchanges_operated: []
+    facilities_operated: 0
+    signal_note: 'participation only: PeeringDB is self-registered by network operators; ASNs, IX presence and facility
+      counts are context, never counted'
+    detected_by: sweep-network-edge.py
+    detected: '2026-10-20'
+  detected_by: sweep-network-edge.py
+  first_seen: '2026-10-20'
 source:
 - crowdstrike/integrations/crowdstrike-integration-edges.yml
